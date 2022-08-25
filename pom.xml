@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>gov.tn.dhs.int</groupId>
+		<artifactId>gov-tn-dhs-int-parent</artifactId>
+		<version>1.0.1</version>
+	</parent>
+
+	<groupId>gov.tn.dhs.easl</groupId>
+	<artifactId>gov-tn-dhs-easl-pebt3</artifactId>
+	<version>0.0.53-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>GOV :: TN :: DHS :: EASL :: PEBT-3</name>
+	<description>Dialer campaign batch service</description>
+
+
+	<scm>
+		<connection>scm:git:https://bitbucket.dhs.tn.gov/scm/gov/gov-tn-dhs-easl-pebt3.git</connection>
+		<url>scm:git:https://bitbucket.dhs.tn.gov/scm/gov/gov-tn-dhs-easl-pebt3.git</url>
+		<developerConnection>scm:git:https://bitbucket.dhs.tn.gov/scm/gov/gov-tn-dhs-easl-pebt3.git</developerConnection>
+		<tag>HEAD</tag>
+	</scm>
+
+	<modules>
+		<module>service-pebt3</module>
+	</modules>
+
+	<repositories>
+
+		<repository>
+			<id>parent</id>
+			<url>https://nexus.dhs.tn.gov/repository/easl-maven-snapshots/</url>
+		</repository>
+
+		<repository>
+			<id>parent-releases</id>
+			<url>https://nexus.dhs.tn.gov/repository/easl-maven-releases/</url>
+		</repository>
+
+	</repositories>
+
+	<profiles>
+		<profile>
+			<id>sonar</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<sonar.host.url>
+					http://sonarqube.sonarqube-dev.svc.cluster.local:9000
+				</sonar.host.url>
+				<sonar.login>8bf1d52a8f69c7fc790a7013c7aa96bc8fdf3739</sonar.login>
+				<sonar.sources>src/main</sonar.sources>
+				<sonar.exclusions>.project,.classpath</sonar.exclusions>
+				<sonar.coverage.exclusions>**/*.js,**/entities/**</sonar.coverage.exclusions>
+				<sonar.tests>src/test</sonar.tests>
+				<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+				<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+				<sonar.coverage.jacoco.xmlReportPaths>${user.dir}/service-pebt3/target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+			</properties>
+		</profile>
+	</profiles>
+</project>
